@@ -7,7 +7,7 @@ import {
   SubTitle,
   Image,
   Pane
-} from "./styles/JumbotronStyles.js";
+} from "./styles/JumbotronStyles";
 
 export default function Jumbotron({
   children,
