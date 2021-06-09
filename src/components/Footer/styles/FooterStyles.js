@@ -29,10 +29,16 @@ export const Row = styled.div`
 `;
 
 export const Link = styled.a`
-  color: #757575;
+  color: white;
   margin-bottom: 1.55em;
   font-size: 0.8125rem;
   text-decoration: none;
+  opacity: 0.5;
+
+  :hover,
+  :focus {
+    opacity: 1;
+  }
 `;
 
 export const Title = styled.p`
