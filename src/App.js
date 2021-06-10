@@ -7,7 +7,6 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          {/* <p>HOME page</p> */}
           <Home />
         </Route>
         <Route path="/signin">
