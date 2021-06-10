@@ -6,7 +6,7 @@ import {
   Inner,
   Item,
   Title
-} from "./styles/AccordionStyles";
+} from "./styles/accordionStyles";
 
 const ToggleContext = createContext();
 
