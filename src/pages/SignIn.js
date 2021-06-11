@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form } from "../components";
 import HeaderContainer from "../containers/HeaderContainer";
 import FooterContainer from "../containers/FooterContainer";
+import { SIGN_UP } from "../constants/routes";
 
 export default function SignIn({ children, ...restProps }) {
   const [error, setError] = useState("");
@@ -30,7 +31,6 @@ export default function SignIn({ children, ...restProps }) {
   return (
     <>
       <HeaderContainer style={{ minHeight: "100vh" }}>
-        {/* <form onSubmit={() => console.log("submit")}></form> */}
         <Form handleSubmit={handleSignIn} method="POST">
           <Form.Title>Sign In</Form.Title>
           {error && <Form.ErrorMsg>{error}</Form.ErrorMsg>}
@@ -55,7 +55,7 @@ export default function SignIn({ children, ...restProps }) {
 
           <Form.Text>
             New to Netflix?
-            <Form.Link to="/signup">Sign up now.</Form.Link>
+            <Form.Link to={SIGN_UP}>Sign up now.</Form.Link>
           </Form.Text>
           <Form.Text small>
             This page is protected by Google reCAPTCHA.
