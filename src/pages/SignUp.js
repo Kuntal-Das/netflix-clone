@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Form } from "../components";
 import { SIGN_IN } from "../constants/routes";
-import FooterContainer from "../containers/FooterContainer";
-import HeaderContainer from "../containers/HeaderContainer";
+import { FooterContainer } from "../containers/FooterContainer";
+import { HeaderContainer } from "../containers/HeaderContainer";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({

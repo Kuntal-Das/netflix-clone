@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Form } from "../components";
-import HeaderContainer from "../containers/HeaderContainer";
-import FooterContainer from "../containers/FooterContainer";
 import { SIGN_UP } from "../constants/routes";
+import { FooterContainer } from "../containers/FooterContainer";
+import { HeaderContainer } from "../containers/HeaderContainer";
 
 export default function SignIn({ children, ...restProps }) {
   const [error, setError] = useState("");

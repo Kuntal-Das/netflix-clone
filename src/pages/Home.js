@@ -1,10 +1,10 @@
 import React from "react";
 
-import JumbotronContainer from "../containers/JumbotronContainer";
-import FooterContainer from "../containers/FooterContainer";
-import FaqsContainer from "../containers/FaqsContainer";
-import HeaderContainer from "../containers/HeaderContainer";
 import { Feature, OptInForm } from "../components";
+import { FaqsContainer } from "../containers/FaqsContainer";
+import { FooterContainer } from "../containers/FooterContainer";
+import { HeaderContainer } from "../containers/HeaderContainer";
+import { JumbotronContainer } from "../containers/JumbotronContainer";
 
 export default function Home(props) {
   return (
