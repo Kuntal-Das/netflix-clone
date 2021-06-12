@@ -25,7 +25,10 @@ export default function SignUp() {
 
   const handleSignup = (event) => {
     event.preventDefault();
-
+    if (isInvalid) {
+      setError("Opps something unexpected happend");
+      return;
+    }
     firebase
       .auth()
       .createUserWithEmailAndPassword(formData.emailAddress, formData.password)
@@ -45,7 +48,7 @@ export default function SignUp() {
             history.push(BROWSE);
           });
       })
-      .catch((err) => setError(err.message));
+      .catch((err) => setError(`${err.message}, error code: ${err.code}`));
   };
 
   const handleChange = (e) => {
