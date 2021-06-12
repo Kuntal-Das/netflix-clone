@@ -48,7 +48,7 @@ export const Item = styled.li`
   max-width: 12.5em;
   list-style-type: none;
   text-align: center;
-  margin-right: 30px;
+  margin-right: 1.875em;
 
   &:hover > ${Picture} {
     border: 3px solid white;

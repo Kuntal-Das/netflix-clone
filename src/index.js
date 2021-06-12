@@ -18,8 +18,8 @@ const config = {
   measurementId: "G-MCEXZ5C34X"
 }
 // Initialize Firebase
-// const firebase = window.firebase.initializeApp(config);
-// firebase.analytics();
+const firebase = window.firebase.initializeApp(config);
+firebase.analytics();
 
 ReactDOM.render(
   <React.StrictMode>
