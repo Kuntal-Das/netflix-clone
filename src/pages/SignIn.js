@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Form } from "../components";
-import { SIGN_UP } from "../constants/routes";
+import { BROWSE, SIGN_UP } from "../constants/routes";
 import { FooterContainer } from "../containers/FooterContainer";
 import { HeaderContainer } from "../containers/HeaderContainer";
+import { FirebaseContext } from "../context/firebase";
 
 export default function SignIn({ children, ...restProps }) {
+  const { firebase } = useContext(FirebaseContext);
+  const history = useHistory();
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     email: "",
@@ -16,8 +20,21 @@ export default function SignIn({ children, ...restProps }) {
   const handleSignIn = (e) => {
     e.preventDefault();
     if (isInValid) {
-      console.log("success");
+      setError("Something Unexpected happend");
+      return;
     }
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(formData.email, formData.password)
+      .then((userCredential) => {
+        setFormData({
+          email: "",
+          password: ""
+        });
+        setError("");
+        history.push(BROWSE);
+      })
+      .catch((err) => setError(`${err.message}, error code ${err.code}`));
   };
 
   const handleChange = (e) => {
