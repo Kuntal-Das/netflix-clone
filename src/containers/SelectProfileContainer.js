@@ -2,7 +2,7 @@ import React from "react";
 import { Header, Profiles } from "../components";
 import * as ROUTES from "../constants/routes";
 
-export const SelectProfileContainer = ({ user }) => (
+export const SelectProfileContainer = ({ user, setProfile }) => (
   <>
     <Header isBgvisible={false}>
       <Header.Frame>
@@ -16,15 +16,15 @@ export const SelectProfileContainer = ({ user }) => (
     <Profiles>
       <Profiles.Title>Who's watching?</Profiles.Title>
       <Profiles.List>
-        <Profiles.User>
+        <Profiles.User onClick={setProfile}>
           <Profiles.Picture src={user.photoURL} />
           <Profiles.Name>{user.displayName}</Profiles.Name>
         </Profiles.User>
-        <Profiles.User>
+        <Profiles.User onClick={setProfile}>
           <Profiles.Picture src={user.photoURL} />
           <Profiles.Name>{user.displayName}</Profiles.Name>
         </Profiles.User>
-        <Profiles.User>
+        <Profiles.User onClick={setProfile}>
           <Profiles.Picture src={user.photoURL} />
           <Profiles.Name>{user.displayName}</Profiles.Name>
         </Profiles.User>
