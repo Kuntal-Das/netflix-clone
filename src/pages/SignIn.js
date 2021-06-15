@@ -27,14 +27,15 @@ export default function SignIn({ children, ...restProps }) {
       .auth()
       .signInWithEmailAndPassword(formData.email, formData.password)
       .then((userCredential) => {
+        history.push(BROWSE);
+      })
+      .catch((err) => {
         setFormData({
           email: "",
           password: ""
         });
-        setError("");
-        history.push(BROWSE);
-      })
-      .catch((err) => setError(`${err.message}, error code ${err.code}`));
+        setError(`${err.message}, error code ${err.code}`);
+      });
   };
 
   const handleChange = (e) => {
