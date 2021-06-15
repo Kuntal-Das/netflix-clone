@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 
 import App from "./App";
-import { GlobalStyles } from "./GlobalStyles";
+import { GlobalStyles } from "./global-styles";
 import { FirebaseContext } from "./context/firebase";
 
 // Your web app's Firebase configuration
