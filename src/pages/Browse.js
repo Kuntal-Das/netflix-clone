@@ -13,8 +13,8 @@ export default function Browse() {
 
   const slides = selectionMap({ series, films });
 
-  console.log("\n\n");
-  console.log(slides);
+  // console.log("\n\n");
+  // console.log(slides);
 
   return <BrowseContainer slides={slides} />;
 }
