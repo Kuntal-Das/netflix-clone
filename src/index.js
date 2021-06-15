@@ -8,6 +8,7 @@ import { FirebaseContext } from "./context/firebase";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 const config = {
   apiKey: "AIzaSyCleiwTPkpprInQo0jrUdLqkrRcBzplsgs",
   authDomain: "animesta-bd102.firebaseapp.com",
@@ -18,9 +19,8 @@ const config = {
   measurementId: "G-MCEXZ5C34X"
 };
 // Initialize Firebase
-// const firebase = window.firebase.initializeApp(config);
-// firebase.analytics();
-
+const firebase = window.firebase.initializeApp(config);
+firebase.analytics();
 
 ReactDOM.render(
   <React.StrictMode>
