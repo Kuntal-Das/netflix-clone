@@ -39,16 +39,16 @@ export default function SignUp() {
             photoURL: `/images/users/${Math.floor(Math.random() * 5) + 1}.png`
           })
           .then(() => {
-            setFormData({
-              firstName: "",
-              emailAddress: "",
-              password: ""
-            });
-            setError("");
             history.push(BROWSE);
           });
       })
-      .catch((err) => setError(`${err.message}, error code: ${err.code}`));
+      .catch((err) => {
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          password: ""
+        }));
+        setError(`${err.message}, error code: ${err.code}`);
+      });
   };
 
   const handleChange = (e) => {
