@@ -25,15 +25,20 @@ export default function SignIn({ children, ...restProps }) {
     }
     firebase
       .auth()
-      .signInWithEmailAndPassword(formData.email, formData.password)
+      .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+      .then(() => {
+        return firebase
+          .auth()
+          .signInWithEmailAndPassword(formData.email, formData.password);
+      })
       .then((userCredential) => {
         history.push(BROWSE);
       })
       .catch((err) => {
-        setFormData({
-          email: "",
+        setFormData((prevFormData) => ({
+          ...prevFormData,
           password: ""
-        });
+        }));
         setError(`${err.message}, error code ${err.code}`);
       });
   };
