@@ -15,11 +15,7 @@ export const BrowseContainer = ({ slides }) => {
   const [slideRows, setSlideRows] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const user = {
-    displayName: "Robin Malex",
-    photoURL: "./images/users/1.png"
-    // photoURL: "https://source.unsplash.com/random"
-  };
+  const user = firebase.auth().currentUser;
 
   const selectProfile = (name, photoURL) => {
     setProfile({

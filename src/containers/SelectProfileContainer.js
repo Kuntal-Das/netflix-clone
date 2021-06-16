@@ -20,14 +20,6 @@ export const SelectProfileContainer = ({ user, setProfile }) => (
           <Profiles.Picture src={user.photoURL} />
           <Profiles.Name>{user.displayName}</Profiles.Name>
         </Profiles.User>
-        <Profiles.User onClick={setProfile}>
-          <Profiles.Picture src={user.photoURL} />
-          <Profiles.Name>{user.displayName}</Profiles.Name>
-        </Profiles.User>
-        <Profiles.User onClick={setProfile}>
-          <Profiles.Picture src={user.photoURL} />
-          <Profiles.Name>{user.displayName}</Profiles.Name>
-        </Profiles.User>
       </Profiles.List>
     </Profiles>
   </>
