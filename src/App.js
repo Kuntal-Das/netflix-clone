@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 
 import { Browse, Home, SignIn, SignUp } from "./pages";
 import * as ROUTES from "./constants/routes";
 import { useAuthListener } from "./hooks";
-import { IsUserRedirect, ProtectedRoute } from "./utils/routes";
+import { RouteWithRedirect, ProtectedRoute } from "./utils/routes";
 
 function App() {
   const { user } = useAuthListener();
@@ -12,30 +12,30 @@ function App() {
   return (
     <Router>
       <Switch>
-        <IsUserRedirect
+        <RouteWithRedirect
           exact
           path={ROUTES.HOME}
           user={user}
           loggedInPath={ROUTES.BROWSE}
         >
           <Home />
-        </IsUserRedirect>
+        </RouteWithRedirect>
 
-        <IsUserRedirect
+        <RouteWithRedirect
           path={ROUTES.SIGN_IN}
           user={user}
           loggedInPath={ROUTES.BROWSE}
         >
           <SignIn />
-        </IsUserRedirect>
+        </RouteWithRedirect>
 
-        <IsUserRedirect
+        <RouteWithRedirect
           path={ROUTES.SIGN_UP}
           user={user}
           loggedInPath={ROUTES.BROWSE}
         >
           <SignUp />
-        </IsUserRedirect>
+        </RouteWithRedirect>
 
         <ProtectedRoute path={ROUTES.BROWSE} user={user}>
           <Browse />

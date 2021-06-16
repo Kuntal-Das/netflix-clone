@@ -31,9 +31,17 @@ export default function SignUp() {
     }
     firebase
       .auth()
-      .createUserWithEmailAndPassword(formData.emailAddress, formData.password)
-      .then((result) => {
-        result.user
+      .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+      .then(() => {
+        return firebase
+          .auth()
+          .createUserWithEmailAndPassword(
+            formData.emailAddress,
+            formData.password
+          );
+      })
+      .then((userCredential) => {
+        userCredential.user
           .updateProfile({
             displayName: formData.firstName,
             photoURL: `/images/users/${Math.floor(Math.random() * 5) + 1}.png`
