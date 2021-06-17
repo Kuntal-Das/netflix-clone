@@ -72,9 +72,13 @@ Header.Search = function HeaderSearch({
   ...restProps
 }) {
   const [searchActive, setSearchActive] = useState(false);
+  const toggleSearchBar = () => {
+    if (searchTerm) setSearchTerm("");
+    setSearchActive(!searchActive)
+  }
   return (
     <Search {...restProps}>
-      <SearchIcon onClick={() => setSearchActive(!searchActive)}>
+      <SearchIcon onClick={toggleSearchBar}>
         <img src="/images/icons/search.png" alt="Search" />
       </SearchIcon>
       <SearchInput
