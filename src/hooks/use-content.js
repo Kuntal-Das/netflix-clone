@@ -20,6 +20,6 @@ export default function useContent(collectionName) {
       })
       .catch((err) => console.log(`${err.message} code:${err.code}`));
   }, []);
-
+  
   return { [collectionName]: content };
 }
