@@ -20,11 +20,11 @@ const config = {
 };
 // Initialize Firebase
 const firebase = window.firebase.initializeApp(config);
-// firebase.analytics();
+firebase.analytics();
 
 ReactDOM.render(
   <React.StrictMode>
-    <FirebaseContext.Provider value={{ firebase }}>
+    <FirebaseContext.Provider value={{ firebase: window.firebase }}>
       <GlobalStyles />
       <App />
     </FirebaseContext.Provider>
