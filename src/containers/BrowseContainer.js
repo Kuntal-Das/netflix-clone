@@ -1,6 +1,6 @@
 import Fuse from "fuse.js";
 import React, { useContext, useEffect, useState } from "react";
-import { Card, Header, Loading, Player } from "../components";
+import { Card, Header, HeaderProfile, Hero, Loading, Player } from "../components";
 import { HOME } from "../constants/routes";
 import { FirebaseContext } from "../context/firebase";
 import { FooterContainer } from "./FooterContainer";
@@ -53,61 +53,64 @@ export const BrowseContainer = ({ slides }) => {
           ) : (
             <Loading.ReleaseBody />
           )}
-          <Header src="./images/misc/joker1.jpg" dontShowOnSmallViewPort>
-            <Header.Frame>
+          <Header>
+            <Header.Container>
               <Header.Group>
                 <Header.Logo
                   to={HOME}
                   src="/images/misc/logo.svg"
                   alt="Netflix"
                 />
-                <Header.Link
-                  active={category === "series" ? "true" : "false"}
-                  onClick={() => setCategory("series")}
-                >
-                  Series
-                </Header.Link>
-                <Header.Link
-                  active={category === "films" ? "true" : "false"}
-                  onClick={() => setCategory("films")}
-                >
-                  Films
-                </Header.Link>
+                <Header.Group>
+                  <Header.Link
+                    active={category === "series"}
+                    onClick={() => setCategory("series")}
+                  >
+                    Series
+                  </Header.Link>
+                  <Header.Link
+                    active={category === "films"}
+                    onClick={() => setCategory("films")}
+                  >
+                    Films
+                  </Header.Link>
+                </Header.Group>  
               </Header.Group>
               <Header.Group>
                 <Header.Search
                   searchTerm={searchTerm}
                   setSearchTerm={setSearchTerm}
+                  slides={slides}
                 />
-                <Header.Profile>
-                  <Header.Picture src={user.photoURL} />
-                  <Header.Dropdown>
-                    <Header.Group>
-                      <Header.Picture src={user.photoURL} />
-                      <Header.Link>{user.displayName}</Header.Link>
-                    </Header.Group>
-                    <Header.Group>
-                      <Header.Link onClick={() => firebase.auth().signOut()}>
-                        Sign out
-                      </Header.Link>
-                    </Header.Group>
-                  </Header.Dropdown>
-                </Header.Profile>
+                <HeaderProfile>
+                  <HeaderProfile.Picture src={user.photoURL} />
+                  <HeaderProfile.Dropdown>
+                    <HeaderProfile.Group>
+                      <HeaderProfile.Picture src={user.photoURL} />
+                      <HeaderProfile.Link>{user.displayName}</HeaderProfile.Link>
+                    </HeaderProfile.Group>
+                    <HeaderProfile.Link onClick={() => firebase.auth().signOut()}>
+                      Sign out
+                    </HeaderProfile.Link>
+                  </HeaderProfile.Dropdown>
+                </HeaderProfile>
               </Header.Group>
-            </Header.Frame>
+            </Header.Container>
+          </Header>
 
-            <Header.Feature>
-              <Header.FeatureCallOut>Watch Joker Now</Header.FeatureCallOut>
-              <Header.Text>
+          <Hero src="/images/misc/joker1.jpg">
+            <Hero.Container>
+              <Hero.Title>Watch Joker Now</Hero.Title>
+              <Hero.Text>
                 Forever alone in a crowd, failed comedian Arthur Fleck seeks
                 connection as he walks the streets of Gotham City. Arthur wears
                 two masks -- the one he paints for his day job as a clown, and
                 the guise he projects in a futile attempt to feel like he's part
                 of the world around him.
-              </Header.Text>
-              <Header.PlayButton>Play</Header.PlayButton>
-            </Header.Feature>
-          </Header>
+              </Hero.Text>
+              <Hero.PlayButton>Play</Hero.PlayButton>
+            </Hero.Container>
+          </Hero>
 
           <Card.Group>
             {slideRows.map((slideItem) => (
