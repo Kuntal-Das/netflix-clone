@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Container, Group, Logo, StyledHeader, Link, Search, SearchIcon, SearchInput } from "./styles/newHeaderStyles";
+import { Container, Group, Logo, StyledHeader, Link, Search, SearchIcon, SearchInput } from "./styles/headerStyles";
 
 export default function Header({ children, restProps }) {
 
