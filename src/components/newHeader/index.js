@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Container, Group, Logo, StyledHeader, Link, Search, SearchIcon, SearchInput } from "./styles/newHeaderStyles";
 
 export default function NewHeader({ children, restProps }) {
 
     return (
-        <StyledHeader>
-            <Container {...restProps}>{children}</Container>
-        </StyledHeader>
+        <StyledHeader {...restProps}>{children}</StyledHeader>
     )
 }
+
+NewHeader.Container = ({children,...restProps}) => (
+    <Container {...restProps}>{ children }</Container>
+)
 
 NewHeader.Group = ({ children, ...restProps }) => (
     <Group {...restProps}>{children}</Group>
@@ -31,10 +33,13 @@ NewHeader.Search = function NewHeaderSearch({
     ...restProps
 }) {
     // const [searchTerm, setSearchTerm] = useState("");
+    const searchInputRef = useRef(null);
     const [searchActive, setSearchActive] = useState(false);
+
     const toggleSearchBar = () => {
         if (searchTerm) setSearchTerm("");
         setSearchActive(!searchActive)
+        if(searchInputRef && !searchActive) searchInputRef.current.focus();
     }
 
     const handleSubmit = (e) => {
@@ -48,6 +53,7 @@ NewHeader.Search = function NewHeaderSearch({
                 <img src="/images/icons/search.png" alt="Search" />
             </SearchIcon>
             <SearchInput
+                ref={searchInputRef}
                 value={searchTerm}
                 onChange={({ target }) => setSearchTerm(target.value)}
                 placeholder="Search files and series"
