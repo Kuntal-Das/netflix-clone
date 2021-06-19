@@ -45,7 +45,9 @@ export const DropDown = styled.div`
   position: absolute;
   text-align: right;
   background-color: black;
-  /* border:1px solid gray; */
+  border:1px solid gray;
+  padding: 0.25em;
+  border-radius: 0 0 5px 5px;
   opacity: ${({ isVisible }) => isVisible ? 1 : 0};
   pointer-events: ${({ isVisible }) => isVisible ? "initial" : "none"};
   transition: opacity 200ms ease-in-out;
