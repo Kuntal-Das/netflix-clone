@@ -1,6 +1,6 @@
 import Fuse from "fuse.js";
 import React, { useContext, useEffect, useState } from "react";
-import { Card, Header, HeaderProfile, Hero, Loading, Player } from "../components";
+import { Card, NewHeader, HeaderProfile, Hero, Loading, Player } from "../components";
 import { HOME } from "../constants/routes";
 import { FirebaseContext } from "../context/firebase";
 import { FooterContainer } from "./FooterContainer";
@@ -19,8 +19,8 @@ export const BrowseContainer = ({ slides }) => {
 
   const selectProfile = (name, photoURL) => {
     setProfile({
-      displayName: user.displayName,
-      photoURL: user.photoURL
+      displayName: name,
+      photoURL: photoURL
     });
     setTimeout(() => {
       setIsLoading(false);
@@ -53,50 +53,50 @@ export const BrowseContainer = ({ slides }) => {
           ) : (
             <Loading.ReleaseBody />
           )}
-          <Header>
-            <Header.Container>
-              <Header.Group>
-                <Header.Logo
+          <NewHeader>
+            <NewHeader.Container>
+              <NewHeader.Group>
+                <NewHeader.Logo
                   to={HOME}
                   src="/images/misc/logo.svg"
                   alt="Netflix"
                 />
-                <Header.Group>
-                  <Header.Link
+                <NewHeader.Group>
+                  <NewHeader.Link
                     active={category === "series"}
                     onClick={() => setCategory("series")}
                   >
                     Series
-                  </Header.Link>
-                  <Header.Link
+                  </NewHeader.Link>
+                  <NewHeader.Link
                     active={category === "films"}
                     onClick={() => setCategory("films")}
                   >
                     Films
-                  </Header.Link>
-                </Header.Group>  
-              </Header.Group>
-              <Header.Group>
-                <Header.Search
+                  </NewHeader.Link>
+                </NewHeader.Group>  
+              </NewHeader.Group>
+              <NewHeader.Group>
+                <NewHeader.Search
                   searchTerm={searchTerm}
                   setSearchTerm={setSearchTerm}
                   slides={slides}
                 />
                 <HeaderProfile>
-                  <HeaderProfile.Picture src={user.photoURL} />
+                  <HeaderProfile.Picture src={profile.photoURL} />
                   <HeaderProfile.Dropdown>
                     <HeaderProfile.Group>
-                      <HeaderProfile.Picture src={user.photoURL} />
-                      <HeaderProfile.Link>{user.displayName}</HeaderProfile.Link>
+                      <HeaderProfile.Picture src={profile.photoURL} />
+                      <HeaderProfile.Link>{profile.displayName}</HeaderProfile.Link>
                     </HeaderProfile.Group>
                     <HeaderProfile.Link onClick={() => firebase.auth().signOut()}>
                       Sign out
                     </HeaderProfile.Link>
                   </HeaderProfile.Dropdown>
                 </HeaderProfile>
-              </Header.Group>
-            </Header.Container>
-          </Header>
+              </NewHeader.Group>
+            </NewHeader.Container>
+          </NewHeader>
 
           <Hero src="/images/misc/joker1.jpg">
             <Hero.Container>

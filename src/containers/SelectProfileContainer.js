@@ -1,19 +1,20 @@
 import React from "react";
-import { Header, Profiles } from "../components";
+import { NewHeader, Header, Profiles } from "../components";
 import * as ROUTES from "../constants/routes";
 
 export const SelectProfileContainer = ({ user, setProfile }) => (
   <>
-    <Header isBgvisible={false}>
-      <Header.Frame>
-        <Header.Logo
+    <NewHeader>
+      <NewHeader.Container>
+        <NewHeader.Logo
           to={ROUTES.HOME}
           src="/images/misc/logo.svg"
           alt="Netflix Logo"
-        />
-      </Header.Frame>
-    </Header>
-    <Profiles>
+          />
+      </NewHeader.Container>
+    </NewHeader>
+    <Profiles style={{marginTop:"5em", marginBottom:"5em"}}>
+      <Profiles.Container>
       <Profiles.Title>Who's watching?</Profiles.Title>
       <Profiles.List>
         <Profiles.User onClick={setProfile}>
@@ -21,6 +22,7 @@ export const SelectProfileContainer = ({ user, setProfile }) => (
           <Profiles.Name>{user.displayName}</Profiles.Name>
         </Profiles.User>
       </Profiles.List>
+      </Profiles.Container>
     </Profiles>
   </>
 );
