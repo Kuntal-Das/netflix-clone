@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Form } from "../components";
+import { Form, Hero } from "../components";
 import { BROWSE, SIGN_UP } from "../constants/routes";
 import { FooterContainer } from "../containers/FooterContainer";
 import { HeaderContainer } from "../containers/HeaderContainer";
@@ -53,38 +53,41 @@ export default function SignIn({ children, ...restProps }) {
 
   return (
     <>
-      <HeaderContainer style={{ minHeight: "100vh" }}>
-        <Form handleSubmit={handleSignIn} method="POST">
-          <Form.Title>Sign In</Form.Title>
-          {error && <Form.ErrorMsg>{error}</Form.ErrorMsg>}
-          <Form.Input
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            type="email"
-            placeholder="Email address"
-          />
-          <Form.Input
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            autoComplete="off"
-            type="password"
-            placeholder="Password"
-          />
-          <Form.Submit disabled={isInValid} type="submit">
-            Sign In
-          </Form.Submit>
+      <HeaderContainer style={{ minHeight: "100vh" }}/>
+      <Hero>
+        <Hero.Container>
+          <Form handleSubmit={handleSignIn} method="POST">
+            <Form.Title>Sign In</Form.Title>
+            {error && <Form.ErrorMsg>{error}</Form.ErrorMsg>}
+            <Form.Input
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              type="email"
+              placeholder="Email address"
+            />
+            <Form.Input
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              autoComplete="off"
+              type="password"
+              placeholder="Password"
+            />
+            <Form.Submit disabled={isInValid} type="submit">
+              Sign In
+            </Form.Submit>
 
-          <Form.Text>
-            New to Netflix?
-            <Form.Link to={SIGN_UP}>Sign up now.</Form.Link>
-          </Form.Text>
-          <Form.Text small>
-            This page is protected by Google reCAPTCHA.
-          </Form.Text>
-        </Form>
-      </HeaderContainer>
+            <Form.Text>
+              New to Netflix?
+              <Form.Link to={SIGN_UP}>Sign up now.</Form.Link>
+            </Form.Text>
+            <Form.Text small>
+              This page is protected by Google reCAPTCHA.
+            </Form.Text>
+          </Form>
+        </Hero.Container>
+      </Hero>
       <FooterContainer />
     </>
   );

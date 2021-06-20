@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Form } from "../components";
+import { Form, Hero } from "../components";
 import { SIGN_IN, BROWSE } from "../constants/routes";
 import { FooterContainer } from "../containers/FooterContainer";
 import { HeaderContainer } from "../containers/HeaderContainer";
@@ -69,43 +69,46 @@ export default function SignUp() {
 
   return (
     <>
-      <HeaderContainer>
-        <Form handleSubmit={handleSignup} method="POST">
-          <Form.Title>Sign Up</Form.Title>
-          {error && <Form.ErrorMsg>{error}</Form.ErrorMsg>}
-
-          <Form.Input
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            placeholder="First Name"
-          />
-          <Form.Input
-            name="emailAddress"
-            placeholder="Email Address"
-            value={formData.emailAddress}
-            onChange={handleChange}
-          />
-          <Form.Input
-            name="password"
-            type="password"
-            value={formData.password}
-            autoComplete="off"
-            placeholder="Password"
-            onChange={handleChange}
-          />
-          <Form.Submit disabled={isInvalid} type="submit">
-            Sign Up
-          </Form.Submit>
-
-          <Form.Text>
-            Already a user? <Form.Link to={SIGN_IN}>Sign In now.</Form.Link>
-          </Form.Text>
-          <Form.Text small>
-            This page is protected by Google reCAPTCHA.
-          </Form.Text>
-        </Form>
-      </HeaderContainer>
+      <HeaderContainer />
+      <Hero>
+        <Hero.Container>
+          <Form handleSubmit={handleSignup} method="POST">
+            <Form.Title>Sign Up</Form.Title>
+            {error && <Form.ErrorMsg>{error}</Form.ErrorMsg>}
+    
+            <Form.Input
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              placeholder="First Name"
+            />
+            <Form.Input
+              name="emailAddress"
+              placeholder="Email Address"
+              value={formData.emailAddress}
+              onChange={handleChange}
+            />
+            <Form.Input
+              name="password"
+              type="password"
+              value={formData.password}
+              autoComplete="off"
+              placeholder="Password"
+              onChange={handleChange}
+            />
+            <Form.Submit disabled={isInvalid} type="submit">
+              Sign Up
+            </Form.Submit>
+    
+            <Form.Text>
+              Already a user? <Form.Link to={SIGN_IN}>Sign In now.</Form.Link>
+            </Form.Text>
+            <Form.Text small>
+              This page is protected by Google reCAPTCHA.
+            </Form.Text>
+          </Form>
+        </Hero.Container>
+      </Hero>
       <FooterContainer />
     </>
   );
