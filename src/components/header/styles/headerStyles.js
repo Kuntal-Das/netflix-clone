@@ -1,85 +1,137 @@
 import styled from "styled-components";
+import { Link as ReachRouterLink } from "react-router-dom";
 
-export const StyledHeader = styled.header`
-    /* position: sticky; */
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index:1;
-    background-image: linear-gradient(black, rgba(0,0,0,0.5) 60%, transparent);
+export const Background = styled.section`
+  display: flex;
+  flex-direction: column;
+  background: url(${({ src }) => (src ? src : "../images/misc/home-bg.jpg")})
+    top left / cover no-repeat;
+
+  @media (max-width: 1100px) {
+    ${({ dontShowOnSmallViewPort }) =>
+    dontShowOnSmallViewPort && "background:none"}
+  }
 `;
 
-export const Logo = styled.img`
-  height: 32px;
-  width: 108px;
-  margin-right: 1em;
-  
-  @media (min-width: 1449px) {
-    height: 45px;
-    width: 167px;
+export const Container = styled.div`
+  display: flex;
+  margin: 0 3.5em;
+  padding: 1.125em 0;
+  justify-content: space-between;
+  align-items: center;
+
+  a {
+    display: flex;
   }
 
-  @media (max-width:400px){
-    height:28px;
-    margin-right: 0.5em;
+  @media (max-width: 1000px) {
+    margin: 0 1.875em;
   }
 `;
 
 export const Link = styled.p`
   color: #fff;
   text-decoration: none;
-  font-size: 1.05rem;
-  font-weight: 700;
-  opacity : ${({ active, noStyle }) => (active && !noStyle ? 1 : 0.85)};
-  border-bottom : 2px solid ${({ active }) => (active ? "currentColor" : "transparent")};
-  padding-bottom: 0.05em;
+  margin-right: 30px;
+  font-weight: ${({ active }) => (active === "true" ? "700" : "normal")};
   cursor: pointer;
-  margin: 0;
 
   &:hover {
-    opacity: 1;
-    border-bottom: 2px solid currentColor;
-    border: ${({ noStyle }) => noStyle && "none"};
+    font-weight: bold;
   }
-  opacity: ${({ noStyle }) => noStyle && 1};
-  padding: ${({ noStyle }) => noStyle && "none"};
-  border:${({ noStyle }) => noStyle && "none"};
+  &:last-of-type {
+    margin-right: 0;
+  }
 `;
 
-export const Container = styled.div`
-    max-width: var(--container-max-width);
-    margin:0 auto;
-    display: flex;
-    justify-content: space-between;
-    padding: 1.125em 1em;
-    position: relative;
+export const ButtonLink = styled(ReachRouterLink)`
+  display: block;
+  background-color: #e50914;
+  height: fit-content;
+  color: white;
+  border: 0;
+  font-size: 0.9rem;
+  border-radius: 3px;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: capitalize;
+  box-sizing: border-box;
 
-    * + * {
-      margin-left: 1em;
-    }
+  &:hover {
+    background: #f40612;
+  }
+`;
+
+export const Logo = styled.img`
+  height: 32px;
+  width: 108px;
+  margin-right: 2.5em;
+
+  @media (min-width: 1449px) {
+    height: 45px;
+    width: 167px;
+  }
 `;
 
 export const Group = styled.div`
   display: flex;
   align-items: center;
-  
-  * + *{
-      margin-left: 1em;
-  }
-  @media (max-width:400px){
-    * + *{
-      margin-left: 0.5em;
-    }
+`;
+
+export const Text = styled.p`
+  color: white;
+  font-size: 1.375rem;
+  line-height: 1.5;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
+`;
+
+export const Feature = styled(Container)`
+  padding: 9em 0 31.25em 0;
+  flex-direction: column;
+  align-items: normal;
+  width: 50%;
+
+  @media (max-width: 1100px) {
+    display: none;
   }
 `;
 
-export const Search = styled.form`
+export const FeatureCallOut = styled.h2`
+  color: white;
+  font-size: 3.125rem;
+  line-height: 1.5;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
+  margin: 0;
+`;
+
+export const PlayButton = styled.button`
+  box-shadow: 0 0.6vw 1vw -0.4vw rgba(0, 0, 0, 0.35);
+  background-color: #e6e6e6;
+  color: #000;
+  border-width: 0;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  max-width: 130px;
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-top: 0.5em;
+  cursor: pointer;
+  transition: background-color 0.5s ease, color 0.5s ease;
+
+  &:hover {
+    background: #ff1e1e;
+    color: white;
+  }
+`;
+
+export const Search = styled.div`
   display: flex;
   align-items: center;
-  overflow: initial;
 
-  @media (min-width:575px){
-    overflow: hidden;
+  @media (max-width: 700px) {
+    display: none;
   }
 `;
 
@@ -97,25 +149,73 @@ export const SearchIcon = styled.button`
 export const SearchInput = styled.input`
   background-color: #44444459;
   color: white;
-  border: 1px solid gray;
-  transition: margin 500ms, opacity 500ms;
+  border: 1px solid white;
+  transition: width 0.5s;
   height: 30px;
   font-size: 0.875rem;
-  padding: 0 0.75em;
-  
+  margin-left: ${({ active }) => (active === true ? "0.75em" : "0")};
+  padding: ${({ active }) => (active === true ? "0 0.75em" : "0")};
+  opacity: ${({ active }) => (active === true ? "1" : "0")};
+  width: ${({ active }) => (active === true ? "200px" : "0px")};
+`;
+
+export const Picture = styled.button`
+  background: url(${({ src }) => src});
+  background-size: contain;
+  border: 0;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+`;
+
+export const Dropdown = styled.div`
+  display: none;
   position: absolute;
-  top: calc(100% - 1em);
-  right: 1em;
-  
-  opacity: ${({ active }) => (active ? "1" : "0")};
-  pointer-events: ${({ active }) => (active ? "initial" : "none")};
-    
-  @media (min-width:575px){
-    position: initial;
-    margin-right: ${({ active }) => (active ? "0" : "-15em")};;
+  background-color: black;
+  padding: 0.625em;
+  width: 100px;
+  top: 32px;
+  right: 10px;
+
+  ${Group}:last-of-type ${Link} {
+    cursor: pointer;
   }
 
-  :focus{
-    border-color: whitesmoke;
+  ${Group} {
+    margin-bottom: 0.625em;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    ${Link}, ${Picture} {
+      cursor: default;
+    }
+  }
+
+  button {
+    margin-right: 0.625em;
+  }
+
+  p {
+    font-size: 0.75rem;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+`;
+
+export const Profile = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 1.25em;
+  position: relative;
+
+  button {
+    cursor: pointer;
+  }
+
+  &:hover > ${Dropdown} {
+    display: flex;
+    flex-direction: column;
   }
 `;
