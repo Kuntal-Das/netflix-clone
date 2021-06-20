@@ -5,9 +5,16 @@ export const Inner = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-direction: ${({ direction }) => direction};
-  max-width: 1100px;
+
+  padding: 50px 1em;
+  max-width: var(--container-max-width);
   margin: 0 auto;
   width: 100%;
+
+  @media (min-width:900px) {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
 
   @media (max-width: 1000px) {
     flex-direction: column;
@@ -19,20 +26,19 @@ export const Pane = styled.div`
 
   @media (max-width: 1000px) {
     width: 100%;
-    padding: 0 45px;
+    padding: 0 2.8125em;
     text-align: center;
   }
 `;
 
 export const Item = styled.div`
   display: flex;
-  border-bottom: 8px solid #222;
-  padding: 50px 2em;
   color: whitesmoke;
   overflow: hidden;
+  border-bottom: 8px solid #222;
 `;
 
-export const Container = styled.section`
+export const Container = styled.div`
   background-color: black;
 
   @media (max-width: 1000px) {

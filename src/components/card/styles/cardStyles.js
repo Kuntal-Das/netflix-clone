@@ -13,6 +13,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 3.125em;
+  padding: 0;
   box-sizing: border-box;
 
   > ${Title} {
@@ -32,12 +33,7 @@ export const Group = styled.div`
     flexDirection === "row" ? "row" : "column"};
   ${({ alignItems }) => alignItems && `align-items: ${alignItems}`};
   ${({ margin }) => margin && `margin: ${margin}`};
-
-  > ${Container}:first-of-type {
-    @media (min-width: 1100px) {
-      margin-top: -9.375em;
-    }
-  }
+  margin-top: -9.375em;
 `;
 
 export const SubTitle = styled.p`
@@ -61,6 +57,9 @@ export const Text = styled.p`
 `;
 
 export const Entities = styled.div`
+  max-width: var(--container-max-width);
+  margin:0 auto;
+  padding: 1em;
   display: flex;
   flex-direction: row;
 `;

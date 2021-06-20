@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Link as ReachRouterLink} from "react-router-dom";
 
 export const StyledHeader = styled.header`
     /* position: sticky; */
@@ -25,7 +26,7 @@ export const Logo = styled.img`
   }
 `;
 
-export const Link = styled.p`
+export const Link = styled(ReachRouterLink)`
   color: #fff;
   text-decoration: none;
   font-size: 1.05rem;
@@ -46,16 +47,42 @@ export const Link = styled.p`
   border:${({ noStyle }) => noStyle && "none"};
 `;
 
+
+export const ButtonLink = styled(ReachRouterLink)`
+  display: block;
+  background-color: #e50914;
+  color: white;
+  border: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 3px;
+  padding: 0.5em 1.25em;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: capitalize;
+  box-sizing: border-box;
+
+  &:hover {
+    background: #f40612;
+  }
+`;
+
 export const Container = styled.div`
     max-width: var(--container-max-width);
     margin:0 auto;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 1.125em 1em;
     position: relative;
 
     * + * {
       margin-left: 1em;
+    }
+
+    @media (min-width:900px) {
+      padding-left: 2em;
+      padding-right: 2em;
     }
 `;
 

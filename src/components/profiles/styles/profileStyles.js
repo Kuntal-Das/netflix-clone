@@ -1,12 +1,15 @@
 import styled from "styled-components";
 
+export const StyledProfiles = styled.div``;
+
 export const Container = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: auto;
-  max-width: 80vw;
+  padding-top: 2em;
+  max-width: var(--container-max-width);
 `;
 
 export const Title = styled.h1`

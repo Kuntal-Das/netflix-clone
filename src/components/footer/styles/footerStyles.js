@@ -1,15 +1,19 @@
 import styled from "styled-components";
 
+
+export const StyledFooter = styled.footer``;
+
 export const Container = styled.div`
   display: flex;
   max-width: 1192px;
   flex-direction: column;
-  padding: 4.25em 3.5em;
+  padding: 1.125em 1em;
   margin: 0 auto;
-
-  @media (max-width: 1000px) {
-    padding-top: 1.875rem;
-    padding-bottom: 1.875rem;
+  max-width: var(--container-max-width);
+  
+  @media (min-width:900px){
+    padding-left: 2em;
+    padding-right: 2em;
   }
 `;
 

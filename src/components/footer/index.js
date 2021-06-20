@@ -6,12 +6,17 @@ import {
   Row,
   Text,
   Title,
-  Break
+  Break,
+  StyledFooter
 } from "./styles/footerStyles";
 
 export default function Footer({ children, ...restProps }) {
-  return <Container {...restProps}>{children}</Container>;
+  return <StyledFooter {...restProps}>{children}</StyledFooter>;
 }
+
+Footer.Container = ({children, ...restProps}) => (
+  <Container {...restProps}>{children}</Container>
+)
 
 Footer.Row = function FooterRow({ children, ...restProps }) {
   return <Row {...restProps}>{children}</Row>;

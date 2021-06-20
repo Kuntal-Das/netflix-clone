@@ -8,7 +8,7 @@ export { default as Profiles } from "./profiles";
 export { default as Loading } from "./loading";
 export { default as Card } from "./card";
 export { default as Player } from "./player";
-export { default as Header } from "./header";
+// export { default as Header } from "./header";
 export { default as NewHeader } from "./newHeader";
 export { default as Hero } from "./hero";
 export { default as HeaderProfile } from "./headerProfile";

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Container, Group, Logo, StyledHeader, Link, Search, SearchIcon, SearchInput } from "./styles/newHeaderStyles";
+import { Container, Group, Logo, StyledHeader, Link, Search, SearchIcon, SearchInput, ButtonLink } from "./styles/newHeaderStyles";
 
 export default function NewHeader({ children, restProps }) {
 
@@ -24,6 +24,10 @@ NewHeader.Logo = ({ to, ...restProps }) => (
 
 NewHeader.Link = ({ children, ...restProps }) => (
     <Link {...restProps}>{children}</Link>
+);
+
+NewHeader.ButtonLink = ({ children, ...restProps }) => (
+    <ButtonLink {...restProps}>{children}</ButtonLink>
 );
 
 NewHeader.Search = function NewHeaderSearch({

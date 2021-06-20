@@ -1,16 +1,22 @@
 import React from "react";
+import { Children } from "react/cjs/react.production.min";
 import {
   Container,
   List,
   Name,
   Title,
   Item,
-  Picture
+  Picture,
+  StyledProfiles
 } from "./styles/profileStyles";
 
 export default function Profiles({ children, ...restProps }) {
-  return <Container {...restProps}>{children}</Container>;
+  return <StyledProfiles {...restProps}>{children}</StyledProfiles>;
 }
+
+Profiles.Container = ({children, ...restProps})=>(
+  <Container {...restProps}>{children}</Container>
+  )
 
 Profiles.Name = ({ children, ...restProps }) => (
   <Name {...restProps}>{children}</Name>
