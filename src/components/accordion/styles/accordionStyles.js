@@ -7,10 +7,15 @@ export const Container = styled.section`
 
 export const Inner = styled.div`
   display: flex;
-  padding: 4em 2.8em;
+  padding: 4em 1em;
   flex-direction: column;
   max-width: 1190px;
   margin: 0 auto;
+
+  @media (min-width:900px){
+    padding-left: 2em;
+    padding-right: 2em;
+  }
 `;
 
 export const Item = styled.div`

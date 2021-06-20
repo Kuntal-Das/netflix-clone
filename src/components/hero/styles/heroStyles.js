@@ -1,15 +1,13 @@
 import styled from "styled-components";
 
 export const StyledHero = styled.div`
-    background: url(${({ src }) => (src ? src : "../images/misc/home-bg.jpg")});
-    /* top left / cover no-repeat; */
+    background-image: url(${({ src }) => (src ? src : "../images/misc/home-bg.jpg")}),
+        linear-gradient(${({src})=>src ? "#575757":"transparent"} 75%, #000) ;
     background-size: cover;
-    background-position: top center;
-    flex-direction: column;
-    background-color: #575757;
-
     background-blend-mode: overlay;
-    /* align-items: normal; */
+    background-position: top center;
+    background-repeat: no-repeat;
+    flex-direction: column;
 `;
 
 export const Title = styled.h1`

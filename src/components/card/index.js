@@ -33,7 +33,10 @@ export default function Card({ children, ...restProps }) {
 }
 
 Card.Group = function CardGroup({ children, ...restProps }) {
-  return <Group {...restProps}>{children}</Group>;
+  return (
+    <div>
+      <Group {...restProps}>{children}</Group>
+    </div>);
 };
 
 Card.Title = function CardTitle({ children, ...restProps }) {
