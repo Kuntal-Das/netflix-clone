@@ -22,16 +22,6 @@ export const Container = styled.div`
     padding-left: 2em;
     padding-right: 2em;
   }
-
-  /* > ${Title} {
-    @media (max-width: 1000px) {
-      margin-left: 1.875em;
-    }
-  } */
-
-  /* &:last-of-type {
-    margin-bottom: 0;
-  } */
 `;
 
 export const Group = styled.div`
@@ -62,6 +52,18 @@ export const Text = styled.p`
   line-height: normal;
 `;
 
+export const Meta = styled.div`
+  position: absolute;
+  bottom: 0;
+  left:0;
+  right: 0;
+  padding: 0.35em;
+  text-align: center;
+  background-image: linear-gradient(transparent 10%, #0000008f);
+  transition: transform 200ms ease-in-out;
+  transform: translateY(100%);
+`;
+
 export const Item = styled.div`
   display: flex;
   flex-direction: column;
@@ -70,12 +72,17 @@ export const Item = styled.div`
   transition: transform 200ms linear;
   outline-offset: 3px;
   z-index: 1;
+  overflow: hidden;
   
   outline: ${({showOutline}) => showOutline && "2px ridge #efefefaf"};
 
   &:hover {
     transform: scale(1.15);
     z-index: 2;
+
+    ${Meta}{
+      transform: translateY(0);
+    }
   }
 `;
 
@@ -87,16 +94,6 @@ export const Entities = styled.div`
   ${Item} + ${Item} {
     margin-left: 0.3125em;
   }
-`;
-
-export const Meta = styled.div`
-  position: absolute;
-  bottom: 0;
-  left:0;
-  right: 0;
-  padding: 0.35em;
-  text-align: center;
-  background-image: linear-gradient(transparent 10%, #0000008f);
 `;
 
 export const FeatureTitle = styled(Title)`  
@@ -121,7 +118,10 @@ export const FeatureClose = styled.button`
 export const Image = styled.img`
   border: 0;
   width: 100%;
+  object-fit: cover;
   max-width: 305px;
+  /* min-width:180px;
+  min-height:100px; */
   cursor: pointer;
   height: auto;
   padding: 0;
@@ -134,16 +134,11 @@ export const FeatureText = styled.p`
   color: white;
   font-weight: ${({ fontWeight }) => (fontWeight === "bold" ? 700 : 500)};
   margin: 1em 0;
-
-  /* @media (max-width: 800px) {
-    line-height: 1.375em;
-  } */
 `;
 
 export const Maturity = styled.div`
   background-color: ${({ rating }) => (rating >= 15 ? "red" : "green")};
   border-radius: 15px;
-  /* width: 20px; */
   padding: 5px 7px;
   text-align: center;
   color: white;
@@ -154,42 +149,16 @@ export const Maturity = styled.div`
 `;
 
 export const Content = styled.div`
-  /* max-width: 500px; */
-  padding: 3.5em 0;
+  padding: 2.5em 0;
   line-height: 1.6;
-
-  /* display: flex;
-  flex-direction: column; */
-
-  /* @media (max-width: 1000px) {
-    margin: 1.875em;
-    max-width: none;
-  } */
 `;
 
 export const Feature = styled.div`
   position: relative;
   background-image: url(${({ src }) => src}),
     linear-gradient(90deg, black, transparent);
-  background-size: contain;
+  background-size: cover;
   background-position:top right;
   background-repeat: no-repeat;
   background-blend-mode: overlay;
-  
-  /* display: flex;
-  flex-direction: row; */
-
-  /* @media (max-width: 1000px) {
-    height: auto;
-    background-size: auto;
-
-    Title {
-      font-size: 1.25rem;
-      line-height: 1em;
-      margin-bottom: 0.5em;
-    }
-    FeatureText {
-      font-size: 0.875rem;
-    }
-  } */
 `;
