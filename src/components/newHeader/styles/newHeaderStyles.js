@@ -6,7 +6,7 @@ export const StyledHeader = styled.header`
     position: fixed;
     width: 100%;
     top: 0;
-    z-index:1;
+    z-index:5;
     background-image: linear-gradient(black, rgba(0,0,0,0.5) 60%, transparent);
 `;
 
@@ -31,8 +31,8 @@ export const Link = styled(ReachRouterLink)`
   text-decoration: none;
   font-size: 1.05rem;
   font-weight: 700;
-  opacity : ${({ active, noStyle }) => (active && !noStyle ? 1 : 0.85)};
-  border-bottom : 2px solid ${({ active }) => (active ? "currentColor" : "transparent")};
+  opacity : ${({ active, nostyle }) => (active==="true" && !nostyle ? 1 : 0.85)};
+  border-bottom : 2px solid ${({ active }) => (active==="true" ? "currentColor" : "transparent")};
   padding-bottom: 0.05em;
   cursor: pointer;
   margin: 0;
@@ -40,11 +40,11 @@ export const Link = styled(ReachRouterLink)`
   &:hover {
     opacity: 1;
     border-bottom: 2px solid currentColor;
-    border: ${({ noStyle }) => noStyle && "none"};
+    border: ${({ nostyle }) => nostyle && "none"};
   }
-  opacity: ${({ noStyle }) => noStyle && 1};
-  padding: ${({ noStyle }) => noStyle && "none"};
-  border:${({ noStyle }) => noStyle && "none"};
+  opacity: ${({ nostyle }) => nostyle && 1};
+  padding: ${({ nostyle }) => nostyle && "none"};
+  border:${({ nostyle }) => nostyle && "none"};
 `;
 
 

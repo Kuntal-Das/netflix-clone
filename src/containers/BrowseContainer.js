@@ -63,14 +63,14 @@ export const BrowseContainer = ({ slides }) => {
                 />
                 <NewHeader.Group>
                   <NewHeader.Link
-                    active={category === "series"}
-                    onClick={() => setCategory("series")}
+                    active={category === "series"?"true":"false"}
+                    onClick={() => setCategory("series")?"true":"false"}
                   >
                     Series
                   </NewHeader.Link>
                   <NewHeader.Link
-                    active={category === "films"}
-                    onClick={() => setCategory("films")}
+                    active={category === "films"?"true":"false"}
+                    onClick={() => setCategory("films")?"true":"false"}
                   >
                     Films
                   </NewHeader.Link>
@@ -124,7 +124,6 @@ export const BrowseContainer = ({ slides }) => {
                       />
                       <Card.Meta>
                         <Card.SubTitle>{item.title}</Card.SubTitle>
-                        <Card.Text>{item.description}</Card.Text>
                       </Card.Meta>
                     </Card.Item>
                   ))}
