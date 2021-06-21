@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
-import { Container, Group, Logo, StyledHeader, Link, Search, SearchIcon, SearchInput, ButtonLink } from "./styles/newHeaderStyles";
+import { Link } from "react-router-dom"
+import { Container, Group, Logo, StyledHeader, Linklike, Search, SearchIcon, SearchInput, ButtonLink } from "./styles/newHeaderStyles";
 
 export default function NewHeader({ children, restProps }) {
 
@@ -17,13 +18,13 @@ NewHeader.Group = ({ children, ...restProps }) => (
 )
 
 NewHeader.Logo = ({ to, ...restProps }) => (
-    <Link to={to} nostyle="true" >
+    <Link to={to} >
         <Logo {...restProps} />
     </Link>
 );
 
-NewHeader.Link = ({ children, ...restProps }) => (
-    <Link {...restProps}>{children}</Link>
+NewHeader.Linklike = ({ children, ...restProps }) => (
+    <Linklike {...restProps}>{children}</Linklike>
 );
 
 NewHeader.ButtonLink = ({ children, ...restProps }) => (

@@ -26,7 +26,7 @@ export const Logo = styled.img`
   }
 `;
 
-export const Link = styled(ReachRouterLink)`
+export const Linklike = styled.p`
   color: #fff;
   text-decoration: none;
   font-size: 1.05rem;
