@@ -8,11 +8,12 @@ export const Picture = styled.img`
   cursor: pointer;
 `;
 
-export const Link = styled.p`
+export const Text = styled.p`
   font-size: 0.875rem;
   margin: 0;
-  /* padding: 0.5em; */
+`;
 
+export const Linklike = styled(Text)`
   &:hover{
     text-decoration: underline;
   }
@@ -34,7 +35,7 @@ export const Group = styled.div`
   align-items: center;
   gap: 0.5em;
 
-  & ${Link}{
+  & ${Linklike}{
     font-weight:700;
   }
 `;
