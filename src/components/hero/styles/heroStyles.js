@@ -56,4 +56,9 @@ export const Container = styled.section`
     max-width: var(--container-max-width);
     margin:0 auto;
     width: 100%;
+
+    @media(min-width:900px){
+        padding-left: 2em;
+        padding-right: 2em;
+    }
 `;
