@@ -62,18 +62,18 @@ export const BrowseContainer = ({ slides }) => {
                   alt="Netflix"
                 />
                 <NewHeader.Group>
-                  <NewHeader.Link
+                  <NewHeader.Linklike
                     active={category === "series"?"true":"false"}
                     onClick={() => setCategory("series")?"true":"false"}
                   >
                     Series
-                  </NewHeader.Link>
-                  <NewHeader.Link
+                  </NewHeader.Linklike>
+                  <NewHeader.Linklike
                     active={category === "films"?"true":"false"}
                     onClick={() => setCategory("films")?"true":"false"}
                   >
                     Films
-                  </NewHeader.Link>
+                  </NewHeader.Linklike>
                 </NewHeader.Group>  
               </NewHeader.Group>
               <NewHeader.Group>
@@ -87,11 +87,11 @@ export const BrowseContainer = ({ slides }) => {
                   <HeaderProfile.Dropdown>
                     <HeaderProfile.Group>
                       <HeaderProfile.Picture src={profile.photoURL} />
-                      <HeaderProfile.Link>{profile.displayName}</HeaderProfile.Link>
+                      <HeaderProfile.Text>{profile.displayName}</HeaderProfile.Text>
                     </HeaderProfile.Group>
-                    <HeaderProfile.Link onClick={() => firebase.auth().signOut()}>
+                    <HeaderProfile.Linklike onClick={() => firebase.auth().signOut()}>
                       Sign out
-                    </HeaderProfile.Link>
+                    </HeaderProfile.Linklike>
                   </HeaderProfile.Dropdown>
                 </HeaderProfile>
               </NewHeader.Group>
@@ -108,7 +108,10 @@ export const BrowseContainer = ({ slides }) => {
                 the guise he projects in a futile attempt to feel like he's part
                 of the world around him.
               </Hero.Text>
-              <Hero.PlayButton>Play</Hero.PlayButton>
+              <Player>
+                <Player.Button CustomBtn={Hero.PlayButton}/>
+                <Player.Video />
+              </Player>
             </Hero.Container>
           </Hero>
 
@@ -121,6 +124,7 @@ export const BrowseContainer = ({ slides }) => {
                     <Card.Item key={item.docId} item={item}>
                       <Card.Image
                         src={`/images/${category}/${item.genre}/${item.slug}/small.jpg`}
+                        alt={item.title}
                       />
                       <Card.Meta>
                         <Card.SubTitle>{item.title}</Card.SubTitle>
