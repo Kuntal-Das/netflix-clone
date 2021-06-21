@@ -17,7 +17,7 @@ NewHeader.Group = ({ children, ...restProps }) => (
 )
 
 NewHeader.Logo = ({ to, ...restProps }) => (
-    <Link to={to} noStyle={true} >
+    <Link to={to} nostyle="true" >
         <Logo {...restProps} />
     </Link>
 );
