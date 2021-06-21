@@ -1,4 +1,4 @@
-import React, { useState, useContext, createContext } from "react";
+import React, { useState, useContext, createContext, useEffect } from "react";
 import {
   Container,
   Content,
@@ -23,9 +23,19 @@ export default function Card({ children, ...restProps }) {
   const [showFeature, setShowFeature] = useState(false);
   const [itemFeature, setItemFeature] = useState(false);
 
+  const toggleFeature = (item) => {
+    if(item !== null){
+      setItemFeature(item)
+      setShowFeature(true)
+    }else{
+      setItemFeature(null)
+      setShowFeature(false)
+    }
+  }
+
   return (
     <FeatureContext.Provider
-      value={{ showFeature, setShowFeature, itemFeature, setItemFeature }}
+      value={{ itemFeature, showFeature, toggleFeature }}
     >
       <Container {...restProps}>{children}</Container>
     </FeatureContext.Provider>
@@ -33,10 +43,7 @@ export default function Card({ children, ...restProps }) {
 }
 
 Card.Group = function CardGroup({ children, ...restProps }) {
-  return (
-    <div>
-      <Group {...restProps}>{children}</Group>
-    </div>);
+  return <Group {...restProps}>{children}</Group>;
 };
 
 Card.Title = function CardTitle({ children, ...restProps }) {
@@ -60,14 +67,12 @@ Card.Meta = function CardMeta({ children, ...restProps }) {
 };
 
 Card.Item = function CardItem({ item, children, ...restProps }) {
-  const { setShowFeature, setItemFeature } = useContext(FeatureContext);
+  const { itemFeature, toggleFeature } = useContext(FeatureContext);
 
   return (
     <Item
-      onClick={() => {
-        setItemFeature(item);
-        setShowFeature(true);
-      }}
+      showOutline={itemFeature && JSON.stringify(itemFeature) === JSON.stringify(item)}
+      onClick={() => toggleFeature(item)}
       {...restProps}
     >
       {children}
@@ -80,22 +85,24 @@ Card.Image = function CardImage({ ...restProps }) {
 };
 
 Card.Feature = function CardFeature({ children, category, ...restProps }) {
-  const { showFeature, itemFeature, setShowFeature } = useContext(
+  const { showFeature, itemFeature, toggleFeature } = useContext(
     FeatureContext
   );
 
   return showFeature ? (
     <Feature
       src={`/images/${category}/${itemFeature.genre}/${itemFeature.slug}/large.jpg`}
+      {...restProps}
     >
       <Content>
         <FeatureTitle>{itemFeature.title}</FeatureTitle>
         <FeatureText>{itemFeature.description}</FeatureText>
-        <FeatureClose onClick={() => setShowFeature(false)}>
+        <FeatureClose 
+          onClick={() => toggleFeature(null)}>
           <img src="/images/icons/close.png" alt="Close" />
         </FeatureClose>
 
-        <Group margin="30px 0" flexDirection="row" alignItems="center">
+        <Group margin="0" flexDirection="row" alignItems="center">
           <Maturity rating={itemFeature.maturity}>
             {itemFeature.maturity < 12 ? "PG" : itemFeature.maturity}
           </Maturity>
