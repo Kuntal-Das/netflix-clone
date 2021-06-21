@@ -13,6 +13,7 @@ export const Overlay = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   margin: 0 20px;
+  z-index:10;
 `;
 
 export const Inner = styled.div`
