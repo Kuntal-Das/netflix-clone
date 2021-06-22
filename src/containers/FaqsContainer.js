@@ -4,7 +4,7 @@ import { Accordion, OptInForm } from "../components";
 
 import faqsData from "../fixtures/faqs.json";
 
-export const FaqsContainer = () => (
+export const FaqsContainer = ({ handleSubmit, optInFormData, handleChange }) => (
   <Accordion>
     <Accordion.Title>Frequently Asked Questions</Accordion.Title>
     {faqsData.map((item) => (
@@ -13,9 +13,16 @@ export const FaqsContainer = () => (
         <Accordion.Body>{item.body}</Accordion.Body>
       </Accordion.Item>
     ))}
-    <OptInForm>
-      <OptInForm.Input id="email" placeholder="Email Address" />
-      <OptInForm.Button type="button">Try it now</OptInForm.Button>
+    <OptInForm handleSubmit={handleSubmit}>
+      <OptInForm.Input 
+        name = "email"
+        id = "email" 
+        value = { optInFormData }
+        onChange = { handleChange }
+        placeholder="Email Address" 
+        required
+      />
+      <OptInForm.Button>Try it now</OptInForm.Button>
       <OptInForm.Text>
         Ready to watch? Enter your email to create or restart your membership.
       </OptInForm.Text>

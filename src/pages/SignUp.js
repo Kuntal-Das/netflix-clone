@@ -8,14 +8,25 @@ import { HeaderContainer } from "../containers/HeaderContainer";
 import { FirebaseContext } from "../context/firebase";
 
 export default function SignUp() {
+  const searchQueryStr = (str, key) =>{
+    let res = ""
+    if(str){
+      let reslist = str.split(`${key}=`)
+      res = reslist[reslist.length-1].split("&")[0]
+    }
+    return res
+  }
   const { firebase } = useContext(FirebaseContext);
 
   const history = useHistory();
+  const email = searchQueryStr(history.location.search,"email");
+
   const [formData, setFormData] = useState({
-    firstName: "",
-    emailAddress: "",
+    firstName: email.split("@")[0],
+    emailAddress: email,
     password: ""
   });
+
   const [error, setError] = useState("");
 
   const isInvalid =
