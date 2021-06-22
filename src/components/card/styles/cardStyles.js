@@ -64,9 +64,15 @@ export const Meta = styled.div`
   transform: translateY(100%);
 `;
 
-export const Item = styled.div.attrs(props=>({
-  tabIndex: 0
+export const Item = styled.button.attrs(props=>({
+  type: props.type || "button"
 }))`
+  background: none;
+  border: none;
+  font:inherit;
+  padding: 0;
+  margin: 0;
+
   display: flex;
   flex-direction: column;
   position: relative;

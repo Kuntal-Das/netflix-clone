@@ -18,7 +18,7 @@ NewHeader.Group = ({ children, ...restProps }) => (
 )
 
 NewHeader.Logo = ({ to, ...restProps }) => (
-    <Link to={to} >
+    <Link to={to} style={{display:"block"}} >
         <Logo {...restProps} />
     </Link>
 );
@@ -41,9 +41,15 @@ NewHeader.Search = function NewHeaderSearch({
     const srcInputRef = useRef(null)
     const [searchActive, setSearchActive] = useState(false);
     const toggleSearchBar = () => {
-        if (searchTerm) setSearchTerm("");
-        setSearchActive(!searchActive);
-        if(!searchActive) srcInputRef.current.focus();
+        if (searchTerm) {
+            setSearchTerm("");
+            srcInputRef.current.disabled = true
+        }
+        setSearchActive(prevVal => !prevVal);
+        if(!searchActive) {
+            srcInputRef.current.focus();
+            srcInputRef.current.disabled = false
+        }
     }
 
     const handleSubmit = (e) => {
