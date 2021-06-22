@@ -35,31 +35,38 @@ export const Picture = styled.img`
   object-fit: cover;
   max-width: 150px;
   height: auto;
-  border: 3px solid black;
   cursor: pointer;
 `;
 
-export const List = styled.ul`
+export const List = styled.div`
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: row;
 `;
 
-export const Item = styled.li`
+export const Item = styled.button.attrs(props=>({
+  type: props.type || "button",
+  tabIndex: 0
+}))`
+  background: none;
+  border: none;
+  color: #fff;
+  font: inherit;
+  
   max-height: 12.5em;
   max-width: 12.5em;
   list-style-type: none;
   text-align: center;
   margin-right: 1.875em;
+  outline-offset: 3px;
 
-  &:hover > ${Picture} {
-    border: 3px solid white;
-  }
+  &:hover, &:focus {
+    outline: 2px solid white;
 
-  &:hover ${Name} {
-    font-weight: bold;
-    color: white;
+    ${Name} {
+      color: white;
+    }
   }
 
   &:last-of-type {

@@ -26,8 +26,15 @@ export const Logo = styled.img`
   }
 `;
 
-export const Linklike = styled.p`
+export const Linklike = styled.button.attrs(props=>({
+  tabIndex: 0,
+  type: "button"
+}))`
+  background: none;
+  border: none;
   color: #fff;
+  font: inherit;
+
   text-decoration: none;
   font-size: 1.05rem;
   font-weight: 700;
@@ -103,14 +110,16 @@ export const Group = styled.div`
 export const Search = styled.form`
   display: flex;
   align-items: center;
-  overflow: initial;
-
-  @media (min-width:575px){
-    overflow: hidden;
-  }
+  padding-left: 1em;
 `;
 
 export const SearchIcon = styled.button`
+  background: none;
+  border: none;
+  color: #fff;
+  font: inherit;
+
+  margin-left: 1em;
   cursor: pointer;
   background-color: transparent;
   border: 0;

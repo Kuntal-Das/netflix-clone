@@ -64,7 +64,9 @@ export const Meta = styled.div`
   transform: translateY(100%);
 `;
 
-export const Item = styled.div`
+export const Item = styled.div.attrs(props=>({
+  tabIndex: 0
+}))`
   display: flex;
   flex-direction: column;
   position: relative;
@@ -74,10 +76,13 @@ export const Item = styled.div`
   z-index: 1;
   overflow: hidden;
   
-  outline: ${({showOutline}) => showOutline && "2px ridge #efefefaf"};
-
-  &:hover {
+  /* outline: ${({showOutline}) => showOutline && "2px ridge #efefefaf"}; */
+  &:hover{
     transform: scale(1.15);
+  }
+
+  &:hover,
+  &:focus {
     z-index: 2;
 
     ${Meta}{

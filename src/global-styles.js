@@ -11,7 +11,14 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
   }
 
-  *{box-sizing:border-box;}
+  *{
+    box-sizing:border-box;
+    outline-offset: 2px ;
+
+    &:focus{
+      outline: 2px solid whitesmoke;
+    }
+  }
     
   :root{
     font-size: 0.75rem;
