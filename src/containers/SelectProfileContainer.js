@@ -1,5 +1,5 @@
 import React from "react";
-import { NewHeader, Header, Profiles } from "../components";
+import { NewHeader, Profiles } from "../components";
 import * as ROUTES from "../constants/routes";
 
 export const SelectProfileContainer = ({ user, setProfile }) => (
