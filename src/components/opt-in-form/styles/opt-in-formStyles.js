@@ -11,7 +11,9 @@ export const Container = styled.form`
     align-items: center;
   }
 `;
-export const Input = styled.input`
+export const Input = styled.input.attrs(props=>({
+  type: props.email || "email"
+}))`
   max-width: 450px;
   width: 100%;
   border: 0;
@@ -28,12 +30,16 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   padding: 1em 2em;
-  background: #e50914;
   color: white;
   text-transform: uppercase;
   font-size: 1.5em;
   border: 0;
   cursor: pointer;
+  background-color: rgba(0,0,0,0.40);
+  background-image: linear-gradient(#e50914 , #f40612);
+  background-size: 100% 300%;
+  background-position-Y: top;
+  transition: background-position 200ms linear;
 
   img {
     margin-left: 10px;
@@ -45,9 +51,9 @@ export const Button = styled.button`
     }
   }
 
-  &:hover {
-    background: #f40612;
-  }
+  background-blend-mode:${({disabled})=> disabled === "true" ? "darken" : "initial" };
+  
+  :hover { background-position: ${({disabled})=> disabled === "true" ? "top" :'bottom'};}
 
   @media (max-width: 1000px) {
     margin-top: 1.125em;
