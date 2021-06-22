@@ -10,7 +10,7 @@ function App() {
   const { user } = useAuthListener();
 
   return (
-    <Router>
+    <Router basename="/netflix-clone">
       <Switch>
         <RouteWithRedirect
           exact
