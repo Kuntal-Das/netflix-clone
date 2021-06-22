@@ -19,7 +19,9 @@ export const Linklike = styled(Text)`
   }
 `;
 
-export const Profile = styled.div`
+export const Profile = styled.div.attrs(props=>({
+  tabIndex: 0
+}))`
     display: flex;
     align-items: center;
     position: relative;

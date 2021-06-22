@@ -9,15 +9,15 @@ export const GlobalStyles = createGlobalStyle`
     color: whitesmoke;
     margin: 0;
     padding: 0;
+
+    *:focus{
+      outline: 2px solid whitesmoke;
+    }
   }
 
   *{
     box-sizing:border-box;
     outline-offset: 2px ;
-
-    &:focus{
-      outline: 2px solid whitesmoke;
-    }
   }
     
   :root{
