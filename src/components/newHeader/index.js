@@ -54,7 +54,7 @@ NewHeader.Search = function NewHeaderSearch({
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(`TODO: searchbar : handleSubmit`)
+        // console.log(`TODO: searchbar : handleSubmit`)
     }
 
     return (
