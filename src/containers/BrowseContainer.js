@@ -32,12 +32,14 @@ export class BrowseContainer extends React.Component {
   setSearchTerm = (newSrcTerm="") => {
     this.setState({searchTerm : newSrcTerm});
   }
-
-  componentDidMount = () => {
-    this.setState({slideRows : this.props.slides[this.state.category]})
-  }
-
+  
   componentDidUpdate = (prevProps, prevState, snapshot) =>{
+    if(
+      this.props.slides.films.length !== prevProps.slides.films.length 
+      || this.props.slides.series.length !== prevProps.slides.series.length
+      ){
+      this.setState({slideRows : this.props.slides[this.state.category]})
+    }
     if(this.state.category !== prevState.category){
       this.setState({slideRows: this.props.slides[this.state.category]})
     }
