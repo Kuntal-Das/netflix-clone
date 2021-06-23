@@ -6,7 +6,7 @@ import { FirebaseContext } from "../context/firebase";
 import { FooterContainer } from "./FooterContainer";
 import { SelectProfileContainer } from "./SelectProfileContainer";
 
-export const BrowseContainer = ({ slides }) => {
+export const BrowseContainer = ({ slides, user }) => {
   const { firebase } = useContext(FirebaseContext);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -14,8 +14,6 @@ export const BrowseContainer = ({ slides }) => {
   const [category, setCategory] = useState("series");
   const [slideRows, setSlideRows] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-
-  const user = firebase.auth().currentUser;
 
   const selectProfile = (name, photoURL) => {
     setProfile({

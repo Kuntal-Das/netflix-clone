@@ -38,7 +38,7 @@ function App() {
         </RouteWithRedirect>
 
         <ProtectedRoute path={ROUTES.BROWSE} user={user}>
-          <Browse />
+          <Browse user={user}/>
         </ProtectedRoute>
       </Switch>
     </Router>
