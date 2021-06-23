@@ -79,7 +79,7 @@ Header.Search = function HeaderSearch({
   return (
     <Search {...restProps}>
       <SearchIcon onClick={toggleSearchBar}>
-        <img src="/images/icons/search.png" alt="Search" />
+        <img src="./images/icons/search.png" alt="Search" />
       </SearchIcon>
       <SearchInput
         value={searchTerm}

@@ -91,7 +91,7 @@ Card.Feature = function CardFeature({ children, category, ...restProps }) {
 
   return showFeature ? (
     <Feature
-      src={`/images/${category}/${itemFeature.genre}/${itemFeature.slug}/large.jpg`}
+      src={`./images/${category}/${itemFeature.genre}/${itemFeature.slug}/large.jpg`}
       {...restProps}
     >
       <Content>
@@ -99,7 +99,7 @@ Card.Feature = function CardFeature({ children, category, ...restProps }) {
         <FeatureText>{itemFeature.description}</FeatureText>
         <FeatureClose 
           onClick={() => toggleFeature(null)}>
-          <img src="/images/icons/close.png" alt="Close" />
+          <img src="./images/icons/close.png" alt="Close" />
         </FeatureClose>
 
         <Group margin="0" flexDirection="row" alignItems="center">

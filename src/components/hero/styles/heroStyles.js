@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledHero = styled.div`
-    background-image: url(${({ src }) => (src ? src : "../images/misc/home-bg.jpg")}),
+    background-image: url(${({ src }) => (src ? src : "./images/misc/home-bg.jpg")}),
         linear-gradient(${({src})=>src ? "#575757":"transparent"} 75%, #000) ;
     background-size: cover;
     background-blend-mode: overlay;

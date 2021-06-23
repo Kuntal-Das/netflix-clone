@@ -34,5 +34,5 @@ Profiles.User = ({ children, ...restProps }) => (
 );
 
 Profiles.Picture = ({ src, ...restProps }) => (
-  <Picture {...restProps} src={src ? src : `/images/misc/loading.gif`} />
+  <Picture {...restProps} src={src ? src : `./images/misc/loading.gif`} />
 );

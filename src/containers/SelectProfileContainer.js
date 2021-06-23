@@ -8,7 +8,7 @@ export const SelectProfileContainer = ({ user, setProfile }) => (
       <NewHeader.Container>
         <NewHeader.Logo
           to={ROUTES.HOME}
-          src="/images/misc/logo.svg"
+          src="./images/misc/logo.svg"
           alt="Netflix Logo"
           />
       </NewHeader.Container>

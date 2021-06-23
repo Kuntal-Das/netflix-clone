@@ -60,7 +60,7 @@ NewHeader.Search = function NewHeaderSearch({
     return (
         <Search {...restProps} onSubmit={ handleSubmit }>
             <SearchIcon onClick={toggleSearchBar} type="button">
-                <img src="/images/icons/search.png" alt="Search" />
+                <img src="./images/icons/search.png" alt="Search" />
             </SearchIcon>
             <SearchInput
                 ref={srcInputRef}

@@ -58,7 +58,7 @@ export const BrowseContainer = ({ slides }) => {
               <NewHeader.Group>
                 <NewHeader.Logo
                   to={HOME}
-                  src="/images/misc/logo.svg"
+                  src="./images/misc/logo.svg"
                   alt="Netflix"
                 />
                 <NewHeader.Group>
@@ -98,7 +98,7 @@ export const BrowseContainer = ({ slides }) => {
             </NewHeader.Container>
           </NewHeader>
 
-          <Hero src="/images/misc/joker1.jpg">
+          <Hero src="./images/misc/joker1.jpg">
             <Hero.Container>
               <Hero.Title>Watch Joker Now</Hero.Title>
               <Hero.Text>
@@ -123,7 +123,7 @@ export const BrowseContainer = ({ slides }) => {
                   {slideItem.data.map((item) => (
                     <Card.Item key={item.docId} item={item}>
                       <Card.Image
-                        src={`/images/${category}/${item.genre}/${item.slug}/small.jpg`}
+                        src={`./images/${category}/${item.genre}/${item.slug}/small.jpg`}
                         alt={item.title}
                       />
                       <Card.Meta>

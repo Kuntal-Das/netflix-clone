@@ -55,7 +55,7 @@ export default function SignUp() {
         userCredential.user
           .updateProfile({
             displayName: formData.firstName,
-            photoURL: `/images/users/${Math.floor(Math.random() * 5) + 1}.png`
+            photoURL: `./images/users/${Math.floor(Math.random() * 5) + 1}.png`
           })
           .then(() => {
             history.push(BROWSE);
