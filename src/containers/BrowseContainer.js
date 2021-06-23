@@ -1,53 +1,67 @@
 import Fuse from "fuse.js";
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { Card, NewHeader, HeaderProfile, Hero, Loading, Player } from "../components";
 import { HOME } from "../constants/routes";
 import { FirebaseContext } from "../context/firebase";
 import { FooterContainer } from "./FooterContainer";
 import { SelectProfileContainer } from "./SelectProfileContainer";
 
-export const BrowseContainer = ({ slides, user }) => {
-  const { firebase } = useContext(FirebaseContext);
+export class BrowseContainer extends React.Component {
+  state = {
+      isLoading:true,
+      profile:{},
+      category:"series",
+      slideRows:[],
+      searchTerm:""
+    }
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [profile, setProfile] = useState({});
-  const [category, setCategory] = useState("series");
-  const [slideRows, setSlideRows] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const selectProfile = (name, photoURL) => {
-    setProfile({
+  selectProfile = (name, photoURL) => {
+    this.setState({profile:{
       displayName: name,
       photoURL: photoURL
-    });
+    }})
     setTimeout(() => {
-      setIsLoading(false);
+      this.setState({isLoading:false});
     }, 1000);
   };
 
-  useEffect(() => {
-    setSlideRows(slides[category]);
-  }, [slides, category]);
+  setCategory = (newCategory="series") => {
+    this.setState({category : newCategory});
+  }
 
-  useEffect(() => {
-    const fuse = new Fuse(slideRows, {
-      keys: ["data.description", "data.title", "data.genre"]
-    });
-    const results = fuse.search(searchTerm).map(({ item }) => item);
+  setSearchTerm = (newSrcTerm="") => {
+    this.setState({searchTerm : newSrcTerm});
+  }
 
-    if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
-      setSlideRows(results);
-    } else {
-      setSlideRows(slides[category]);
+  componentDidMount = () => {
+    this.setState({slideRows : this.props.slides[this.state.category]})
+  }
+
+  componentDidUpdate = (prevProps, prevState, snapshot) =>{
+    if(this.state.category !== prevState.category){
+      this.setState({slideRows: this.props.slides[this.state.category]})
     }
-  }, [searchTerm]);
+    if(this.state.searchTerm !== prevState.searchTerm){
+      const fuse = new Fuse(this.state.slideRows, {
+        keys: ["data.description", "data.title", "data.genre"]
+      });
+      const results = fuse.search(this.state.searchTerm).map(({ item }) => item);
+      
+      if (this.state.slideRows.length > 0 && this.state.searchTerm.length > 3 && results.length > 0) {
+        this.setState({slideRows : results})
+      } else {
+        this.setState({slideRows : results})
+        this.setState({slideRows: this.props.slides[this.state.category]})
+      }
+    }
+  }
 
-  return (
+  render = () => (
     <>
-      {profile.displayName ? (
+      {this.state.profile.displayName ? (
         <>
-          {isLoading ? (
-            <Loading src={user.photoURL} />
+          {this.state.isLoading ? (
+            <Loading src={this.props.user.photoURL} />
           ) : (
             <Loading.ReleaseBody />
           )}
@@ -61,14 +75,14 @@ export const BrowseContainer = ({ slides, user }) => {
                 />
                 <NewHeader.Group>
                   <NewHeader.Linklike
-                    active={category === "series"?"true":"false"}
-                    onClick={() => setCategory("series")?"true":"false"}
+                    active={this.state.category === "series"?"true":"false"}
+                    onClick={() => this.setCategory("series")}
                   >
                     Series
                   </NewHeader.Linklike>
                   <NewHeader.Linklike
-                    active={category === "films"?"true":"false"}
-                    onClick={() => setCategory("films")?"true":"false"}
+                    active={this.state.category === "films"?"true":"false"}
+                    onClick={() => this.setCategory("films")}
                   >
                     Films
                   </NewHeader.Linklike>
@@ -76,20 +90,24 @@ export const BrowseContainer = ({ slides, user }) => {
               </NewHeader.Group>
               <NewHeader.Group>
                 <NewHeader.Search
-                  searchTerm={searchTerm}
-                  setSearchTerm={setSearchTerm}
-                  slides={slides}
+                  searchTerm={this.state.searchTerm}
+                  setSearchTerm={this.setSearchTerm}
+                  slides={this.state.slides}
                 />
                 <HeaderProfile>
-                  <HeaderProfile.Picture src={profile.photoURL} />
+                  <HeaderProfile.Picture src={this.state.profile.photoURL} />
                   <HeaderProfile.Dropdown>
                     <HeaderProfile.Group>
-                      <HeaderProfile.Picture src={profile.photoURL} />
-                      <HeaderProfile.Text>{profile.displayName}</HeaderProfile.Text>
+                      <HeaderProfile.Picture src={this.state.profile.photoURL} />
+                      <HeaderProfile.Text>{this.state.profile.displayName}</HeaderProfile.Text>
                     </HeaderProfile.Group>
-                    <HeaderProfile.Linklike onClick={() => firebase.auth().signOut()}>
-                      Sign out
-                    </HeaderProfile.Linklike>
+                    <FirebaseContext.Consumer>
+                      {({firebase})=>(
+                        <HeaderProfile.Linklike onClick={() => firebase.auth().signOut()}>
+                          Sign out
+                        </HeaderProfile.Linklike>
+                      )}
+                    </FirebaseContext.Consumer>
                   </HeaderProfile.Dropdown>
                 </HeaderProfile>
               </NewHeader.Group>
@@ -114,14 +132,14 @@ export const BrowseContainer = ({ slides, user }) => {
           </Hero>
 
           <Card.Group>
-            {slideRows.map((slideItem) => (
-              <Card key={`${category}-${slideItem.title.toLowerCase()}`}>
+            {this.state.slideRows.map((slideItem) => (
+              <Card key={`${this.state.category}-${slideItem.title.toLowerCase()}`}>
                 <Card.Title>{slideItem.title}</Card.Title>
                 <Card.Entities>
                   {slideItem.data.map((item) => (
                     <Card.Item key={item.docId} item={item}>
                       <Card.Image
-                        src={`./images/${category}/${item.genre}/${item.slug}/small.jpg`}
+                        src={`./images/${this.state.category}/${item.genre}/${item.slug}/small.jpg`}
                         alt={item.title}
                       />
                       <Card.Meta>
@@ -130,7 +148,7 @@ export const BrowseContainer = ({ slides, user }) => {
                     </Card.Item>
                   ))}
                 </Card.Entities>
-                <Card.Feature category={category}>
+                <Card.Feature category={this.state.category}>
                   <Player>
                     <Player.Button />
                     <Player.Video />
@@ -142,11 +160,11 @@ export const BrowseContainer = ({ slides, user }) => {
         </>
       ) : (
         <SelectProfileContainer
-          user={user}
-          setProfile={() => selectProfile(user.displayName, user.photoURL)}
+          user={this.props.user}
+          setProfile={() => this.selectProfile(this.props.user.displayName, this.props.user.photoURL)}
         />
       )}
       <FooterContainer />
     </>
   );
-};
+}
